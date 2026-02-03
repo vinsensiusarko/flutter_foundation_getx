@@ -41,7 +41,7 @@ class SettingView extends GetView<SettingController> {
               ),
               trailing: Switch(
                 activeTrackColor: AppColors.colorWhite,
-                activeColor: AppColors.mainColor,
+                activeThumbColor: AppColors.mainColor,
                 value: appController.isDarkTheme.value!,
                 onChanged: (themeValue) {
                   if (themeValue != appController.isDarkTheme.value) {
