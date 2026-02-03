@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_foundation_getx/app/core/util/screen_layout_util.dart';
+import 'package:flutter_foundation_getx/app/modules/home/views/layouts/desktop/home_desktop.dart';
+import 'package:flutter_foundation_getx/app/modules/home/views/layouts/mobile/home_mobile.dart';
+import 'package:flutter_foundation_getx/app/modules/home/views/layouts/tablet/home_tablet_landscape.dart';
 
 import 'package:get/get.dart';
 
-import '../../../core/util/app_config.dart';
-import '../../../core/util/dimensions.dart';
-import '../../../data/constant/application_constant.dart';
 import '../controllers/home_controller.dart';
+import 'layouts/tablet/home_tablet_portrait.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -14,38 +16,18 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
       builder: (controller) {
-        return Material(
-          color: appController.appTheme.screenBackground,
-          child: Container(
-            margin: EdgeInsets.only(top: Dimensions.height45 + 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    FlutterLogo(size: Dimensions.radius15),
-                    SizedBox(width: Dimensions.width10 - 5),
-                    Text(
-                      'Welcome to ${Application.applicationName}',
-                      style: TextStyle(
-                        fontSize: Dimensions.font14,
-                        fontWeight: FontWeight.w400,
-                        color: appController.appTheme.textColor,
-                      ),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: ListView(
-                    children: [],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      }
+        if (context.desktopScreen) {
+          return HomeDesktop(controller: controller);
+        } else if (context.tabletScreen) {
+          if (context.tabletPortraitScreen) {
+            return HomeTabletPortrait(controller: controller);
+          } else {
+            return HomeTabletLandscape(controller: controller);
+          }
+        } else {
+          return HomeMobile(controller: controller);
+        }
+      },
     );
   }
 }
