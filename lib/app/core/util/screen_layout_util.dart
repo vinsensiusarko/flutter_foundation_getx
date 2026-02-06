@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 class ScreenLayout {
   /// Breakpoint standar untuk mobile ke tablet
   static const double mobileBreakpoint = 525;
-  static const double tabletBreakpoint = 1100;
+  static const double tabletBreakpoint = 1280;
 
   /// Cek apakah perangkat adalah Mobile
   static bool isMobileDevice(BuildContext context) => MediaQuery.of(context).size.width <= mobileBreakpoint;
