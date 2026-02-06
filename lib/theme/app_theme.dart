@@ -8,7 +8,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_foundation_getx/app/core/util/dimensions.dart';
 import 'package:flutter_foundation_getx/style/color.dart';
 
 enum ThemeType {
@@ -80,11 +79,7 @@ class AppTheme {
       fontFamily: 'Roboto',
       appBarTheme: AppBarTheme(
         backgroundColor: appBarBackground,
-        titleTextStyle: TextStyle(
-          fontSize: Dimensions.font16 + 1,
-          fontWeight: FontWeight.w400,
-          color: textColor
-        ),
+        titleTextStyle: TextStyle(color: textColor),
         iconTheme: IconThemeData(
           color: activeIcon,
         ),
@@ -96,16 +91,8 @@ class AppTheme {
       scaffoldBackgroundColor: screenBackground,
       listTileTheme: ListTileThemeData(
         iconColor: activeIcon,
-        titleTextStyle: TextStyle(
-          fontSize: Dimensions.font14,
-          fontWeight: FontWeight.w400,
-          color: textColor
-        ),
-        subtitleTextStyle: TextStyle(
-          fontSize: Dimensions.font12,
-          fontWeight: FontWeight.w400,
-          color: textColor
-        )
+        titleTextStyle: TextStyle(color: textColor),
+        subtitleTextStyle: TextStyle(color: textColor)
       ),
       textTheme: (isDark ? ThemeData.dark() : ThemeData.light()).textTheme,
       progressIndicatorTheme: ProgressIndicatorThemeData(
