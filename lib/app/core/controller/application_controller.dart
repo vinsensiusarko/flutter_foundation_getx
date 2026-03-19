@@ -13,10 +13,13 @@ import 'package:flutter_foundation_getx/theme/app_theme.dart';
 import 'package:get/get.dart';
 
 class ApplicationController extends GetxController with WidgetsBindingObserver {
+  final SharedPreferencesManager sharedPreferencesManager;
+
+  ApplicationController({required this.sharedPreferencesManager});
 
   AppTheme _appTheme = AppTheme.fromType(ThemeType.light);
   AppTheme get appTheme => _appTheme;
-  Rx<bool?> isDarkTheme = SharedPreferencesManager.getBool('isDarkTheme').obs;
+  Rx<bool?> get isDarkTheme => sharedPreferencesManager.getBool('isDarkTheme').obs;
 
   @override
   void onInit() {
