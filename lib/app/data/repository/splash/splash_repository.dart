@@ -9,15 +9,19 @@
 import 'package:flutter_foundation_getx/app/core/helper/shared_pref.dart';
 
 class SplashRepository {
+  final SharedPreferencesManager sharedPreferencesManager;
+
+  SplashRepository({required this.sharedPreferencesManager});
+
   bool? showOnboarding() {
-    return SharedPreferencesManager.getBool('intro') ?? false;
+    return sharedPreferencesManager.getBool('intro');
   }
 
   Future<bool> setIntro(bool intro) {
-    return SharedPreferencesManager.setBool('intro', intro);
+    return sharedPreferencesManager.putBool('intro', intro);
   }
 
   bool getTheme() {
-    return SharedPreferencesManager.getBool('isDarkTheme') ?? false;
+    return sharedPreferencesManager.getBool('isDarkTheme');
   }
 }
