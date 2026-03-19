@@ -6,7 +6,7 @@ import '../controllers/splash_controller.dart';
 class SplashBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<SplashRepository>(() => SplashRepository());
+    Get.lazyPut<SplashRepository>(() => SplashRepository(sharedPreferencesManager: Get.find()));
     Get.lazyPut<SplashController>(() => SplashController(splashRepository: Get.find()));
   }
 }
