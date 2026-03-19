@@ -21,11 +21,11 @@ class MainBinding extends Bindings {
     Get.put<Dimensions>(Dimensions());
 
     /// Controller
-    Get.put<ApplicationController>(ApplicationController(), permanent: true);
-    Get.put<ThemeController>(ThemeController(), permanent: true);
+    Get.put<ApplicationController>(ApplicationController(sharedPreferencesManager: Get.find()), permanent: true);
+    Get.put<ThemeController>(ThemeController(sharedPreferencesManager: Get.find()), permanent: true);
     Get.put<AuthController>(AuthController());
 
     /// Repository
-    Get.put<AuthRepository>(AuthRepository());
+    Get.put<AuthRepository>(AuthRepository(sharedPreferencesManager: Get.find()));
   }
 }
