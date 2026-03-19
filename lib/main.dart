@@ -2,12 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_foundation_getx/app/core/util/app_config.dart';
 import 'package:flutter_foundation_getx/app/core/util/error_flutter_screen.dart';
 import 'package:flutter_foundation_getx/app/modules/unknown/views/unknown_view.dart';
 import 'package:get/get.dart';
 
 import 'app/core/binding/main_binding.dart';
-import 'app/core/controller/theme_controller.dart';
 import 'app/core/helper/shared_pref.dart';
 import 'app/data/constant/application_constant.dart';
 import 'app/modules/unknown/bindings/unknown_binding.dart';
@@ -19,7 +19,7 @@ void main() async {
     flutterErrorScreen();
   }
   WidgetsFlutterBinding.ensureInitialized();
-  await SharedPreferencesManager.init();
+  Get.putAsync(() => SharedPreferencesManager().init());
   runApp(const FlutterFoundationGetx());
 }
 
@@ -30,6 +30,7 @@ class FlutterFoundationGetx extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: MainBinding(),
       builder: (context, child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
@@ -42,7 +43,6 @@ class FlutterFoundationGetx extends StatelessWidget {
         );
       },
       debugShowCheckedModeBanner: false,
-      initialBinding: MainBinding(),
       title: Application.applicationName,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
@@ -54,7 +54,7 @@ class FlutterFoundationGetx extends StatelessWidget {
       defaultTransition: Platform.isAndroid ? Transition.native : Transition.cupertino,
       theme: AppTheme.fromType(ThemeType.light).themeData,
       darkTheme: AppTheme.fromType(ThemeType.dark).themeData,
-      themeMode: ThemeController().theme,
+      themeMode: themeController.theme,
     );
   }
 }
