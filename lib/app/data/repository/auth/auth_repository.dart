@@ -9,12 +9,15 @@
 import '../../../core/helper/shared_pref.dart';
 
 class AuthRepository {
+  final SharedPreferencesManager sharedPreferencesManager;
+
+  AuthRepository({required this.sharedPreferencesManager});
 
   bool? getAuthentication() {
-    return SharedPreferencesManager.getBool('authentication') ?? false;
+    return sharedPreferencesManager.getBool('authentication');
   }
 
   Future<bool> setAuthentication(bool authentication) {
-    return SharedPreferencesManager.setBool('authentication', authentication);
+    return sharedPreferencesManager.putBool('authentication', authentication);
   }
 }
