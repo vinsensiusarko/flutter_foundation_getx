@@ -10,91 +10,31 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesManager extends GetxService {
-  static SharedPreferences? _preferences;
+  late SharedPreferences sharedPreferences;
 
-  static Future<void> init() async {
-    _preferences = await SharedPreferences.getInstance();
+  /// Fungsi inisialisasi async
+  Future<SharedPreferencesManager> init() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    return this;
   }
 
-  /// Menyimpan String
-  static Future<bool> setString(String key, String value) async {
-    if (_preferences == null) return false;
-    return await _preferences!.setString(key, value);
-  }
+  /// --- Helper Methods ---
+  Future<bool> putBool(String key, bool value) => sharedPreferences.setBool(key, value);
+  bool getBool(String key) => sharedPreferences.getBool(key) ?? false;
 
-  /// Menyimpan Integer
-  static Future<bool> setInt(String key, int value) async {
-    if (_preferences == null) return false;
-    return await _preferences!.setInt(key, value);
-  }
+  Future<bool> putDouble(String key, double value) => sharedPreferences.setDouble(key, value);
+  double? getDouble(String key) => sharedPreferences.getDouble(key);
 
-  /// Menyimpan Double
-  static Future<bool> setDouble(String key, double value) async {
-    if (_preferences == null) return false;
-    return await _preferences!.setDouble(key, value);
-  }
+  Future<bool> putInt(String key, int value) => sharedPreferences.setInt(key, value);
+  int? getInt(String key) => sharedPreferences.getInt(key);
 
-  /// Menyimpan Boolean
-  static Future<bool> setBool(String key, bool value) async {
-    if (_preferences == null) return false;
-    return await _preferences!.setBool(key, value);
-  }
+  Future<bool> putString(String key, String value) => sharedPreferences.setString(key, value);
+  String? getString(String key) => sharedPreferences.getString(key);
 
-  /// Menyimpan List of Strings
-  static Future<bool> setStringList(String key, List<String> value) async {
-    if (_preferences == null) return false;
-    return await _preferences!.setStringList(key, value);
-  }
+  Future<bool> putStringList(String key, List<String> value) => sharedPreferences.setStringList(key, value);
+  List<String>? getStringList(String key) => sharedPreferences.getStringList(key);
 
-  // --- Metode untuk Mengambil Data ---
-
-  /// Mengambil String
-  static String? getString(String key) {
-    if (_preferences == null) return null;
-    return _preferences!.getString(key);
-  }
-
-  /// Mengambil Integer
-  static int? getInt(String key) {
-    if (_preferences == null) return null;
-    return _preferences!.getInt(key);
-  }
-
-  /// Mengambil Double
-  static double? getDouble(String key) {
-    if (_preferences == null) return null;
-    return _preferences!.getDouble(key);
-  }
-
-  /// Mengambil Boolean
-  static bool? getBool(String key) {
-    if (_preferences == null) return null;
-    return _preferences!.getBool(key);
-  }
-
-  /// Mengambil List of Strings
-  static List<String>? getStringList(String key) {
-    if (_preferences == null) return null;
-    return _preferences!.getStringList(key);
-  }
-
-  // --- Metode Lainnya ---
-
-  /// Memeriksa apakah kunci ada
-  static bool containsKey(String key) {
-    if (_preferences == null) return false;
-    return _preferences!.containsKey(key);
-  }
-
-  /// Menghapus data berdasarkan kunci
-  static Future<bool> remove(String key) async {
-    if (_preferences == null) return false;
-    return await _preferences!.remove(key);
-  }
-
-  /// Menghapus semua data
-  static Future<bool> clear() async {
-    if (_preferences == null) return false;
-    return await _preferences!.clear();
-  }
+  bool isKeyExists(String key) => sharedPreferences.containsKey(key);
+  Future<bool> clearKey(String key) => sharedPreferences.remove(key);
+  Future<bool> clearAll() => sharedPreferences.clear();
 }
