@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../../../style/color.dart';
 import '../../../core/util/dimensions.dart';
-import '../../../data/constant/images_constant.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/onboarding_controller.dart';
 
@@ -19,9 +18,6 @@ class OnboardingView extends GetView<OnboardingController> {
           child: Container(
             decoration: BoxDecoration(
               color: Colors.grey[100],
-              image: const DecorationImage(
-                image: AssetImage(Images.applicationLogo),
-              ),
             ),
             child: Stack(
               children: [
