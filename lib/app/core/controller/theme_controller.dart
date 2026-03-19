@@ -13,16 +13,21 @@ import 'package:flutter_foundation_getx/theme/app_theme.dart';
 import 'package:get/get.dart';
 
 class ThemeController extends GetxController {
+  final SharedPreferencesManager sharedPreferencesManager;
+
+  ThemeController({required this.sharedPreferencesManager});
+
+  /// Key for storing theme
   final _themeKey = "isDarkTheme";
 
   /// Get isDarkMode info from local storage and return ThemeMode
   ThemeMode get theme => _loadThemeFromStorage() ?? false ? ThemeMode.dark : ThemeMode.light;
 
   /// Load isDArkMode from local storage and if it's empty, returns false (that means default theme is light)
-  bool? _loadThemeFromStorage() => SharedPreferencesManager.getBool(_themeKey);
+  bool? _loadThemeFromStorage() => sharedPreferencesManager.getBool(_themeKey);
 
   /// Save isDarkMode to local storage
-  void _saveThemeToStorage(bool isDarkTheme) => SharedPreferencesManager.setBool(_themeKey, isDarkTheme);
+  void _saveThemeToStorage(bool isDarkTheme) => sharedPreferencesManager.putBool(_themeKey, isDarkTheme);
 
   /// Switch theme and save to local storage
   Future<void> switchTheme(bool themeValue) async {
