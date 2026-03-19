@@ -1,10 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../../../../style/color.dart';
 import '../../../core/util/app_config.dart';
+import '../../../core/util/custom_bouncing_physics.dart';
 import '../../../core/util/dimensions.dart';
+import '../../home/views/home_view.dart';
+import '../../news/views/news_view.dart';
+import '../../setting/views/setting_view.dart';
 import '../controllers/main_controller.dart';
 
 class MainView extends GetView<MainController> {
@@ -15,110 +20,178 @@ class MainView extends GetView<MainController> {
     return GetBuilder<MainController>(
       builder: (controller) {
         return Scaffold(
-          body: controller.screenList[controller.currentIndex],
+          body: Stack(
+            children: [
+              PageView(
+                controller: controller.pageController,
+                onPageChanged: controller.onSwipePageIndex,
+                physics: const CustomBouncingPhysics(),
+                children: [
+                  const HomeView(),
+                  const NewsView(),
+                  const SizedBox(),
+                  const SettingView(),
+                ],
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  width: Dimensions.width10,
+                  color: Colors.transparent,
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  width: Dimensions.width10,
+                  color: Colors.transparent,
+                ),
+              ),
+            ],
+          ),
+          extendBody: true,
+          resizeToAvoidBottomInset: true,
+          floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
+          floatingActionButton: Transform.translate(
+            offset: const Offset(0, 23.5),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 8,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: FloatingActionButton.small(
+                    heroTag: 'createSomething',
+                    tooltip: '',
+                    elevation: 4,
+                    backgroundColor: AppColors.mainColorLight,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(Dimensions.radius10 - 4),
+                      side: BorderSide(
+                        color: Colors.white,
+                        strokeAlign: 1,
+                        width: 2,
+                        style: BorderStyle.solid,
+                      ),
+                    ),
+                    onPressed: () {
+                      if (kDebugMode) {
+                        print('Create Something Page');
+                      }
+                    },
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: Dimensions.radius15 + 4,
+                    ),
+                  ),
+                ),
+                SizedBox(height: Dimensions.height15 - 3),
+                Text(
+                  'Create',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.mainColorLight,
+                  ),
+                ),
+              ],
+            ),
+          ),
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Dimensions.radius20 - 4),
-                topRight: Radius.circular(Dimensions.radius20 - 4),
+                topLeft: Radius.circular(Dimensions.radius10 - 2),
+                topRight: Radius.circular(Dimensions.radius10 - 2),
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.5),
-                  spreadRadius: 1,
-                  blurRadius: 2,
+                  color: Colors.black.withValues(alpha: 0.1),
+                  spreadRadius: 0,
+                  blurRadius: 10,
+                  offset: Offset(0, -2),
                 ),
               ],
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Dimensions.radius20 - 4),
-                topRight: Radius.circular(Dimensions.radius20 - 4),
+              borderRadius: BorderRadiusGeometry.only(
+                topLeft: Radius.circular(Dimensions.radius10 - 2),
+                topRight: Radius.circular(Dimensions.radius10 - 2),
               ),
-              child: Theme(
-                data: ThemeData(
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                ),
-                child: BottomNavigationBar(
-                  backgroundColor: appController.appTheme.screenBackground,
-                  selectedFontSize: Dimensions.font12,
-                  unselectedFontSize: Dimensions.font12,
-                  selectedItemColor: appController.appTheme.activeText,
-                  unselectedItemColor: appController.isDarkTheme.value == false ? AppColors.colorGrey : AppColors.colorGrey.shade300,
-                  type: BottomNavigationBarType.fixed,
-                  currentIndex: controller.currentIndex,
-                  onTap: (index) {
-                    controller.onTapIndex(index);
-                  },
-                  items: [
-                    BottomNavigationBarItem(
-                      icon: AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn,
-                        padding: EdgeInsets.symmetric(
-                          vertical: 2,
-                          horizontal: Dimensions.width10
-                        ),
-                        decoration: BoxDecoration(
-                          color: controller.currentIndex == 0 ? AppColors.mainColorLight.withValues(alpha: 0.5) : Colors.transparent,
-                          borderRadius: BorderRadius.all(Radius.circular(Dimensions.radius20)),
-                        ),
-                        child: Icon(
-                          controller.currentIndex == 0 ? Icons.dashboard_customize : Icons.dashboard_customize_outlined,
-                          color: controller.currentIndex == 0 ? appController.appTheme.activeIcon : null,
-                        ),
-                      ),
-                      label: 'Home',
-                      tooltip: 'Home',
-                    ),
-                    BottomNavigationBarItem(
-                      icon: AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn,
-                        padding: EdgeInsets.symmetric(
-                          vertical: 2,
-                          horizontal: Dimensions.width10
-                        ),
-                        decoration: BoxDecoration(
-                          color: controller.currentIndex == 1 ? AppColors.mainColorLight.withValues(alpha: 0.5) : Colors.transparent,
-                          borderRadius: BorderRadius.all(Radius.circular(Dimensions.radius20)),
-                        ),
-                        child: Icon(
-                          controller.currentIndex == 1 ? Icons.newspaper : Icons.newspaper_outlined,
-                          color: controller.currentIndex == 1 ? appController.appTheme.activeIcon : null,
-                        ),
-                      ),
-                      label: 'News',
-                      tooltip: 'News',
-                    ),
-                    BottomNavigationBarItem(
-                      icon: AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn,
-                        padding: EdgeInsets.symmetric(
-                          vertical: 2,
-                          horizontal: Dimensions.width10
-                        ),
-                        decoration: BoxDecoration(
-                          color: controller.currentIndex == 2 ? AppColors.mainColorLight.withValues(alpha: 0.5) : Colors.transparent,
-                          borderRadius: BorderRadius.all(Radius.circular(Dimensions.radius20)),
-                        ),
-                        child: Icon(
-                          controller.currentIndex == 2 ? Icons.person : Icons.person_outline,
-                          color: controller.currentIndex == 2 ? appController.appTheme.activeIcon : null,
-                        )
-                      ),
-                      label: 'Setting',
-                      tooltip: 'Setting',
-                    ),
-                  ],
+              child: BottomAppBar(
+                height: Dimensions.height45 + 10,
+                padding: EdgeInsets.zero,
+                elevation: 0,
+                color: appController.appTheme.screenBackground,
+                shadowColor: Colors.black,
+                surfaceTintColor: Colors.white,
+                shape: null,
+                notchMargin: 0,
+                child: SizedBox(
+                  height: 70,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _buildNavItem(controller: controller, controller.currentIndex == 0 ? Icons.dashboard_customize : Icons.dashboard_customize_outlined, 'Beranda', 0),
+                      _buildNavItem(controller: controller, controller.currentIndex == 1 ? Icons.inventory_2 : Icons.inventory_2_outlined, 'Stok', 1),
+                      const SizedBox(width: 50),
+                      _buildNavItem(controller: controller, controller.currentIndex == 2 ? Icons.transfer_within_a_station : Icons.transfer_within_a_station_outlined, 'Transfer', 2),
+                      _buildNavItem(controller: controller, controller.currentIndex == 3 ? Icons.person : Icons.person_outline, 'Profil', 3),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         );
       }
+    );
+  }
+
+  Widget _buildNavItem(IconData icon, String label, int index, {required MainController controller}) {
+    bool isSelected = controller.currentIndex == index;
+    return InkWell(
+      onTap: () => controller.onTapIndex(index),
+      highlightColor: isSelected ? Colors.transparent : Colors.transparent,
+      splashColor: isSelected ? Colors.transparent : Colors.transparent,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          AnimatedContainer(
+            padding: EdgeInsets.symmetric(
+              vertical: Dimensions.height10 - 10,
+              horizontal: Dimensions.width10,
+            ),
+            curve: Curves.easeIn,
+            duration: const Duration(milliseconds: 300),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(Dimensions.radius12),
+              color: isSelected ? AppColors.mainColorLight.withValues(alpha: 0.8) : Colors.transparent,
+            ),
+            child: Icon(
+              icon,
+              color: isSelected ? Colors.white : Colors.white70
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              color: isSelected ? AppColors.mainColorLight : Colors.white70,
+              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
