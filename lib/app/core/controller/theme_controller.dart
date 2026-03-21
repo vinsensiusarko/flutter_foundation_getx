@@ -21,27 +21,27 @@ class ThemeController extends GetxController {
   final _themeKey = "isDarkTheme";
 
   /// Get isDarkMode info from local storage and return ThemeMode
-  ThemeMode get theme => loadThemeMode() ? ThemeMode.dark : ThemeMode.light;
+  ThemeMode get theme => _loadThemeMode() ? ThemeMode.dark : ThemeMode.light;
 
   /// Load isDarkMode from local storage and if it's empty, returns false (that means default theme is light)
-  bool loadThemeMode() {
+  bool _loadThemeMode() {
     return sharedPreferencesManager.getBool(_themeKey);
   }
 
   /// Save isDarkMode to local storage
-  Future<void> saveThemeMode(bool isDarkMode) async {
+  Future<void> _saveThemeMode(bool isDarkMode) async {
     await sharedPreferencesManager.putBool(_themeKey, isDarkMode);
   }
 
   /// Switch theme and save to local storage
   Future<void> switchTheme(bool themeValue) async {
     if (themeValue) {
-      saveThemeMode(themeValue);
+      _saveThemeMode(themeValue);
       appController.isDarkTheme.value = themeValue;
       appController.updateTheme(AppTheme.fromType(ThemeType.dark));
       Get.changeThemeMode(ThemeMode.dark);
     } else {
-      saveThemeMode(themeValue);
+      _saveThemeMode(themeValue);
       appController.isDarkTheme.value = themeValue;
       appController.updateTheme(AppTheme.fromType(ThemeType.light));
       Get.changeThemeMode(ThemeMode.light);
