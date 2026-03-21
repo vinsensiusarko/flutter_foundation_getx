@@ -11,9 +11,17 @@ import 'package:flutter_foundation_getx/app/core/controller/theme_controller.dar
 import 'package:get/get.dart';
 
 ApplicationController get appController {
-  return Get.isRegistered<ApplicationController>() ? Get.find<ApplicationController>() : Get.put(ApplicationController(sharedPreferencesManager: Get.find()));
+  if (Get.isRegistered<ApplicationController>()) {
+    return Get.find<ApplicationController>();
+  } else {
+    return Get.put(ApplicationController(sharedPreferencesManager: Get.find()));
+  }
 }
 
 ThemeController get themeController {
-  return Get.isRegistered<ThemeController>() ? Get.find<ThemeController>() : Get.put(ThemeController(sharedPreferencesManager: Get.find()));
+  if (Get.isRegistered<ThemeController>()) {
+    return Get.find<ThemeController>();
+  } else {
+    return Get.put(ThemeController(sharedPreferencesManager: Get.find()));
+  }
 }
