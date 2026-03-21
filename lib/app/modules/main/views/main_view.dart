@@ -140,11 +140,31 @@ class MainView extends GetView<MainController> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _buildNavItem(controller: controller, controller.currentIndex == 0 ? Icons.dashboard_customize : Icons.dashboard_customize_outlined, 'Beranda', 0),
-                      _buildNavItem(controller: controller, controller.currentIndex == 1 ? Icons.inventory_2 : Icons.inventory_2_outlined, 'Stok', 1),
+                      _buildNavItem(
+                        controller: controller,
+                        icon: controller.currentIndex == 0 ? Icons.dashboard_customize : Icons.dashboard_customize_outlined,
+                        label: 'Beranda',
+                        index: 0,
+                      ),
+                      _buildNavItem(
+                        controller: controller,
+                        icon: controller.currentIndex == 1 ? Icons.inventory_2 : Icons.inventory_2_outlined,
+                        label: 'Product',
+                        index: 1,
+                      ),
                       const SizedBox(width: 50),
-                      _buildNavItem(controller: controller, controller.currentIndex == 2 ? Icons.transfer_within_a_station : Icons.transfer_within_a_station_outlined, 'Transfer', 2),
-                      _buildNavItem(controller: controller, controller.currentIndex == 3 ? Icons.person : Icons.person_outline, 'Profil', 3),
+                      _buildNavItem(
+                        controller: controller,
+                        icon: controller.currentIndex == 2 ? Icons.transfer_within_a_station : Icons.transfer_within_a_station_outlined,
+                        label: 'Transfer',
+                        index: 2,
+                      ),
+                      _buildNavItem(
+                        controller: controller,
+                        icon: controller.currentIndex == 3 ? Icons.person : Icons.person_outline,
+                        label: 'Profil',
+                        index: 3,
+                      ),
                     ],
                   ),
                 ),
@@ -156,7 +176,7 @@ class MainView extends GetView<MainController> {
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, int index, {required MainController controller}) {
+  Widget _buildNavItem({required MainController controller, required IconData icon, required String label, required int index}) {
     bool isSelected = controller.currentIndex == index;
     return InkWell(
       onTap: () => controller.onTapIndex(index),
@@ -178,7 +198,7 @@ class MainView extends GetView<MainController> {
             ),
             child: Icon(
               icon,
-              color: isSelected ? Colors.white : Colors.white70
+              color: isSelected ? Colors.white : appController.appTheme.bottomAppBarIcon,
             ),
           ),
           const SizedBox(height: 4),
@@ -186,7 +206,7 @@ class MainView extends GetView<MainController> {
             label,
             style: TextStyle(
               fontSize: 12,
-              color: isSelected ? AppColors.mainColorLight : Colors.white70,
+              color: isSelected ? AppColors.mainColorLight : appController.appTheme.bottomAppBarText,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
           ),
