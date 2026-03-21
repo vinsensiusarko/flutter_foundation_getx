@@ -24,7 +24,9 @@ class AppTheme {
   Color activeText;
   Color appBarBackground;
   Color screenBackground;
-  Color bottomNavigationBarBackground;
+  Color bottomAppBarBackground;
+  Color bottomAppBarIcon;
+  Color bottomAppBarText;
   Color textColor;
   Color primary;
   Color progressIndicator;
@@ -36,7 +38,9 @@ class AppTheme {
     required this.activeText,
     required this.appBarBackground,
     required this.screenBackground,
-    required this.bottomNavigationBarBackground,
+    required this.bottomAppBarBackground,
+    required this.bottomAppBarIcon,
+    required this.bottomAppBarText,
     required this.textColor,
     required this.primary,
     required this.progressIndicator,
@@ -52,7 +56,9 @@ class AppTheme {
           activeText: AppColors.mainColor,
           appBarBackground: AppColors.colorWhite,
           screenBackground: AppColors.colorWhite,
-          bottomNavigationBarBackground: AppColors.colorWhite,
+          bottomAppBarBackground: AppColors.colorWhite,
+          bottomAppBarIcon: Colors.grey,
+          bottomAppBarText: Colors.grey,
           textColor: AppColors.colorBlack,
           primary: AppColors.mainColor,
           progressIndicator: AppColors.mainColor,
@@ -65,7 +71,9 @@ class AppTheme {
           activeText: AppColors.colorWhite,
           appBarBackground: AppColors.colorDark,
           screenBackground: AppColors.colorDark,
-          bottomNavigationBarBackground: AppColors.colorDark,
+          bottomAppBarBackground: AppColors.colorDark,
+          bottomAppBarIcon: Colors.white54,
+          bottomAppBarText: Colors.white54,
           textColor: AppColors.colorWhite,
           primary: AppColors.mainColorLight,
           progressIndicator: AppColors.colorWhite,
