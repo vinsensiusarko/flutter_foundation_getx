@@ -12,18 +12,16 @@ import 'package:get/get.dart';
 import '../../data/repository/auth/auth_repository.dart';
 import '../controller/application_controller.dart';
 import '../controller/auth_controller.dart';
-import '../controller/theme_controller.dart';
 
 class MainBinding extends Bindings {
   @override
   void dependencies() {
     /// Utils
-    Get.put<Dimensions>(Dimensions());
+    Get.put<Dimensions>(Dimensions(), permanent: true);
 
     /// Controller
     Get.put<ApplicationController>(ApplicationController(sharedPreferencesManager: Get.find()), permanent: true);
-    Get.put<ThemeController>(ThemeController(sharedPreferencesManager: Get.find()), permanent: true);
-    Get.put<AuthController>(AuthController());
+    Get.put<AuthController>(AuthController(), permanent: true);
 
     /// Repository
     Get.put<AuthRepository>(AuthRepository(sharedPreferencesManager: Get.find()));
