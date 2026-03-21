@@ -6,7 +6,6 @@
  * All rights reserved.
  */
 
-import 'package:flutter_foundation_getx/app/core/util/dimensions.dart';
 import 'package:get/get.dart';
 
 import '../../data/repository/auth/auth_repository.dart';
@@ -16,9 +15,6 @@ import '../controller/auth_controller.dart';
 class MainBinding extends Bindings {
   @override
   void dependencies() {
-    /// Utils
-    Get.put<Dimensions>(Dimensions(), permanent: true);
-
     /// Controller
     Get.put<ApplicationController>(ApplicationController(sharedPreferencesManager: Get.find()), permanent: true);
     Get.put<AuthController>(AuthController(), permanent: true);

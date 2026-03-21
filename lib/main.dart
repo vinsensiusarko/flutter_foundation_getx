@@ -2,16 +2,17 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_foundation_getx/app/core/controller/theme_controller.dart';
-import 'package:flutter_foundation_getx/app/core/util/error_flutter_screen.dart';
-import 'package:flutter_foundation_getx/app/modules/unknown/views/unknown_view.dart';
+import 'package:flutter_foundation_getx/app/core/util/dimensions.dart';
 import 'package:get/get.dart';
 
 import 'app/core/binding/main_binding.dart';
+import 'app/core/controller/theme_controller.dart';
 import 'app/core/helper/shared_pref.dart';
 import 'app/core/util/app_config.dart';
+import 'app/core/util/error_flutter_screen.dart';
 import 'app/data/constant/application_constant.dart';
 import 'app/modules/unknown/bindings/unknown_binding.dart';
+import 'app/modules/unknown/views/unknown_view.dart';
 import 'app/routes/app_pages.dart';
 import 'theme/app_theme.dart';
 
@@ -21,6 +22,7 @@ void main() async {
   }
   WidgetsFlutterBinding.ensureInitialized();
   await Get.putAsync(() => SharedPreferencesManager().init());
+  Get.putAsync(() async => Dimensions.init());
   Get.put(ThemeController(sharedPreferencesManager: Get.find()));
   runApp(const FlutterFoundationGetx());
 }

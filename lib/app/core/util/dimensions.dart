@@ -9,17 +9,13 @@
 import 'package:get/get.dart';
 
 class Dimensions {
-  static double _screenHeight = 0;
-  static double _screenWidth = 0;
+  static double screenHeight = Get.context?.height ?? Get.height;
+  static double screenWidth = Get.context?.width ?? Get.width;
 
-  /// Method to initialize screen dimensions
   static void init() {
-    _screenHeight = Get.height;
-    _screenWidth = Get.width;
+    screenHeight = Get.context?.height ?? Get.height;
+    screenWidth = Get.context?.width ?? Get.width;
   }
-
-  static double get screenHeight => _screenHeight;
-  static double get screenWidth => _screenWidth;
 
   static double get pageView => screenHeight / 2.135714285714286;
   static double get pageViewContainer => screenHeight / 3.106493506493506;

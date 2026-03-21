@@ -21,17 +21,17 @@ class ApplicationController extends GetxController with WidgetsBindingObserver {
   AppTheme get appTheme => _appTheme;
   Rx<bool?> get isDarkTheme => sharedPreferencesManager.getBool('isDarkTheme').obs;
 
+  /// Update theme
+  void updateTheme(AppTheme theme) {
+    _appTheme = theme;
+    Get.forceAppUpdate();
+  }
+
   @override
   void onInit() {
     super.onInit();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Dimensions.init();
     });
-  }
-
-  /// Update theme
-  void updateTheme(AppTheme theme) {
-    _appTheme = theme;
-    Get.forceAppUpdate();
   }
 }
