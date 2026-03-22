@@ -9,7 +9,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../style/color.dart';
-import 'dimensions.dart';
 
 void flutterErrorScreen() {
   ErrorWidget.builder = (FlutterErrorDetails details) => ErrorFlutterScreen(errorDetails: details);
@@ -24,8 +23,8 @@ class ErrorFlutterScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SizedBox(
-        height: Dimensions.screenHeight,
-        width: Dimensions.screenWidth,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         child: ListView(
           clipBehavior: Clip.none,
           padding: EdgeInsets.symmetric(
@@ -35,7 +34,7 @@ class ErrorFlutterScreen extends StatelessWidget {
             parent: AlwaysScrollableScrollPhysics()
           ),
           children: [
-            SizedBox(height: Dimensions.height45),
+            SizedBox(height: 45),
             CircleAvatar(
               radius: 100,
               backgroundColor: AppColors.mainColor.withValues(alpha: 0.8),
