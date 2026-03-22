@@ -6,12 +6,11 @@
  * All rights reserved.
  */
 
-import 'package:flutter/material.dart';
 import 'package:flutter_foundation_getx/app/core/helper/shared_pref.dart';
 import 'package:flutter_foundation_getx/theme/app_theme.dart';
 import 'package:get/get.dart';
 
-class ApplicationController extends GetxController with WidgetsBindingObserver {
+class ApplicationController extends GetxController {
   final SharedPreferencesManager sharedPreferencesManager;
 
   ApplicationController({required this.sharedPreferencesManager});
