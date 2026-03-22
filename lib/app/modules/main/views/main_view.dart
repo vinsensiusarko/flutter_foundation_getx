@@ -74,7 +74,7 @@ class MainView extends GetView<MainController> {
                     elevation: 4,
                     backgroundColor: AppColors.mainColorLight,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(Dimensions.radius10 - 4),
+                      borderRadius: BorderRadius.circular(Dimensions.radius10),
                       side: BorderSide(
                         color: Colors.white,
                         strokeAlign: 1,
