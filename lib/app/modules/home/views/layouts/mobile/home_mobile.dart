@@ -77,7 +77,6 @@ class HomeMobile extends StatelessWidget {
                 child: IconButton(
                   onPressed: () {
                     Get.toNamed(Routes.NOTIFICATION);
-                    // Get.to(() => const NotificationScreen());
                     /// Opsional: Reset notif pas diklik
                     controller.hasNotification = !controller.hasNotification;
                   },
@@ -116,7 +115,7 @@ class HomeMobile extends StatelessWidget {
                   ),
                 ),
               ),
-              /*RotationTransition(
+              RotationTransition(
                 turns: Tween(begin: 0.0, end: 1.0).animate(controller.animController),
                 child: IconButton(
                   onPressed: controller.isLoading.value ? null : () => controller.refreshData(),
@@ -126,7 +125,7 @@ class HomeMobile extends StatelessWidget {
                     size: 28,
                   ),
                 ),
-              ),*/
+              ),
             ],
           ),
           SliverToBoxAdapter(
@@ -136,12 +135,12 @@ class HomeMobile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                      'Ringkasan Inventaris',
-                      style: TextStyle(
-                          fontSize: Dimensions.font15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87
-                      )
+                    'Ringkasan Inventaris',
+                    style: TextStyle(
+                      fontSize: Dimensions.font15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87
+                    )
                   ),
                   SizedBox(height: Dimensions.height10),
                   Row(
