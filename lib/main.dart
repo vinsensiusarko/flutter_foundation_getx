@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_foundation_getx/app/core/util/dimensions.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'app/core/binding/main_binding.dart';
@@ -22,7 +22,6 @@ void main() async {
   }
   WidgetsFlutterBinding.ensureInitialized();
   await Get.putAsync(() => SharedPreferencesManager().init());
-  Get.putAsync(() async => Dimensions.init());
   Get.put(ThemeController(sharedPreferencesManager: Get.find()));
   runApp(const FlutterFoundationGetx());
 }
@@ -33,32 +32,42 @@ class FlutterFoundationGetx extends StatelessWidget {
   /// This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      initialBinding: MainBinding(),
+    return ScreenUtilInit(
+      designSize: Size(411, 683),
+      useInheritedMediaQuery: true,
+      splitScreenMode: true,
+      minTextAdapt: true,
+      enableScaleWH: () => true,
+      enableScaleText: () => false,
       builder: (context, child) {
-        return MediaQuery(
-          data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
-          child: SafeArea(
-            top: false,
-            bottom: false,
-            maintainBottomViewPadding: true,
-            child: child!,
+        return GetMaterialApp(
+          initialBinding: MainBinding(),
+          builder: (context, child) {
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
+              child: SafeArea(
+                top: false,
+                bottom: false,
+                maintainBottomViewPadding: true,
+                child: child!,
+              ),
+            );
+          },
+          debugShowCheckedModeBanner: false,
+          title: Application.applicationName,
+          initialRoute: AppPages.INITIAL,
+          getPages: AppPages.routes,
+          unknownRoute: GetPage(
+            name: AppPages.UNKNOWN,
+            page: () => const UnknownView(),
+            binding: UnknownBinding(),
           ),
+          defaultTransition: Platform.isAndroid ? Transition.native : Transition.cupertino,
+          theme: AppTheme.fromType(ThemeType.light).themeData,
+          darkTheme: AppTheme.fromType(ThemeType.dark).themeData,
+          themeMode: themeController.theme,
         );
-      },
-      debugShowCheckedModeBanner: false,
-      title: Application.applicationName,
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-      unknownRoute: GetPage(
-        name: AppPages.UNKNOWN,
-        page: () => const UnknownView(),
-        binding: UnknownBinding(),
-      ),
-      defaultTransition: Platform.isAndroid ? Transition.native : Transition.cupertino,
-      theme: AppTheme.fromType(ThemeType.light).themeData,
-      darkTheme: AppTheme.fromType(ThemeType.dark).themeData,
-      themeMode: themeController.theme,
+      }
     );
   }
 }
