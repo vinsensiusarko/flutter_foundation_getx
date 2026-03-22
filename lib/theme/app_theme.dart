@@ -8,6 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_foundation_getx/app/core/util/dimensions.dart';
 import 'package:flutter_foundation_getx/style/color.dart';
 
 enum ThemeType {
@@ -87,7 +88,11 @@ class AppTheme {
       fontFamily: 'Roboto',
       appBarTheme: AppBarTheme(
         backgroundColor: appBarBackground,
-        titleTextStyle: TextStyle(color: textColor),
+        titleTextStyle: TextStyle(
+          color: textColor,
+          fontWeight: FontWeight.w400,
+          fontSize: Dimensions.font20,
+        ),
         iconTheme: IconThemeData(
           color: activeIcon,
         ),
