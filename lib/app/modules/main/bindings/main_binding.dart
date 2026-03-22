@@ -8,9 +8,9 @@ import '../controllers/main_controller.dart';
 class MainBinding extends Bindings {
   @override
   void dependencies() {
+    Get.lazyPut<MainController>(() => MainController());
     Get.lazyPut<HomeController>(() => HomeController(), fenix: true);
     Get.lazyPut<NewsController>(() => NewsController(), fenix: true);
     Get.lazyPut<SettingController>(() => SettingController(), fenix: true);
-    Get.lazyPut<MainController>(() => MainController());
   }
 }

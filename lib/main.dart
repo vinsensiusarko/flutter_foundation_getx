@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'app/core/binding/main_binding.dart';
-import 'app/core/controller/theme_controller.dart';
 import 'app/core/helper/shared_pref.dart';
 import 'app/core/util/app_config.dart';
 import 'app/core/util/error_flutter_screen.dart';
@@ -22,7 +21,6 @@ void main() async {
   }
   WidgetsFlutterBinding.ensureInitialized();
   await Get.putAsync(() => SharedPreferencesManager().init());
-  Get.put(ThemeController(sharedPreferencesManager: Get.find()));
   runApp(const FlutterFoundationGetx());
 }
 
