@@ -13,6 +13,7 @@ abstract class Routes {
   static const UNKNOWN = _Paths.UNKNOWN;
   static const DETAIL = _Paths.DETAIL;
   static const NEWS = _Paths.NEWS;
+  static const NOTIFICATION = _Paths.NOTIFICATION;
 }
 
 abstract class _Paths {
@@ -26,4 +27,5 @@ abstract class _Paths {
   static const UNKNOWN = '/unknown';
   static const DETAIL = '/detail';
   static const NEWS = '/news';
+  static const NOTIFICATION = '/notification';
 }
