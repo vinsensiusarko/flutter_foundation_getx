@@ -6,71 +6,74 @@
  * All rights reserved.
  */
 
-import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Dimensions {
-  static double screenHeight = Get.context?.height ?? Get.height;
-  static double screenWidth = Get.context?.width ?? Get.width;
+  static double get screenHeight => 1.sh;
+  static double get screenWidth => 1.sw;
 
-  static void init() {
-    screenHeight = Get.context?.height ?? Get.height;
-    screenWidth = Get.context?.width ?? Get.width;
-  }
+  // === COMPONENT SIZES ===
+  // Berdasarkan hitungan awalmu (683.4 / 2.13 = 320)
+  static double get pageView => 320.h;
+  static double get pageViewContainer => 220.h;
+  static double get pageViewTextContainer => 120.h;
 
-  static double get pageView => screenHeight / 2.135714285714286;
-  static double get pageViewContainer => screenHeight / 3.106493506493506;
-  static double get pageViewTextContainer => screenHeight / 5.695238095238095;
+  // === DYNAMIC HEIGHT ===
+  static double get height10 => 10.h;
+  static double get height15 => 15.h;
+  static double get height20 => 20.h;
+  static double get height30 => 30.h;
+  static double get height45 => 45.h;
 
-  // dynamic height padding and margin
-  static double get height10 => screenHeight / 68.34285714285714;
-  static double get height15 => screenHeight / 45.56190476190476;
-  static double get height20 => screenHeight / 34.17142857142857;
-  static double get height30 => screenHeight / 22.78095238095238;
-  static double get height45 => screenHeight / 15.18730158730159;
+  // === DYNAMIC WIDTH ===
+  // Catatan: di kode asli kamu pakai screenHeight buat lebar,
+  // tapi idealnya kita ubah ke .w biar responsif ke lebar layar beneran
+  static double get width10 => 10.w;
+  static double get width15 => 15.w;
+  static double get width20 => 20.w;
+  static double get width30 => 30.w;
+  static double get width45 => 45.w;
 
-  // dynamic width padding and margin
-  static double get width10 => screenHeight / 68.34285714285714;
-  static double get width15 => screenHeight / 45.56190476190476;
-  static double get width20 => screenHeight / 34.17142857142857;
-  static double get width30 => screenHeight / 22.78095238095238;
-  static double get width45 => screenHeight / 15.18730158730159;
+  // === FONT SIZE ===
+  static double get font10 => 10.sp;
+  static double get font12 => 12.sp;
+  static double get font14 => 14.sp;
+  static double get font15 => 15.sp;
+  static double get font16 => 16.sp;
+  static double get font20 => 20.sp;
+  static double get font26 => 26.sp;
+  static double get font30 => 30.sp;
 
-  // font size
-  static double get font10 => screenHeight / 68.34285714285714;
-  static double get font12 => screenHeight / 62.71428571428571;
-  static double get font14 => screenHeight / 53.75510204081632;
-  static double get font15 => screenHeight / 45.56190476190476;
-  static double get font16 => screenHeight / 42.71428571428571;
-  static double get font20 => screenHeight / 34.17142857142857;
-  static double get font26 => screenHeight / 26.28571428571428;
-  static double get font30 => screenHeight / 22.78095238095238;
+  // === RADIUS ===
+  static double get radius10 => 10.r;
+  static double get radius12 => 12.r;
+  static double get radius15 => 15.r;
+  static double get radius20 => 20.r;
+  static double get radius30 => 30.r;
 
-  // radius
-  static double get radius10 => screenHeight / 68.34285714285714;
-  static double get radius12 => screenHeight / 62.71428571428571;
-  static double get radius15 => screenHeight / 45.56190476190476;
-  static double get radius20 => screenHeight / 34.17142857142857;
-  static double get radius30 => screenHeight / 22.78095238095238;
+  // === ICON SIZE ===
+  // sp atau .r aman untuk icon biar proporsional
+  static double get iconSize12 => 12.sp;
+  static double get iconSize16 => 16.sp;
+  static double get iconSize20 => 20.sp;
+  static double get iconSize24 => 24.sp;
 
-  // icon size
-  static double get iconSize12 => screenHeight / 62.71428571428571;
-  static double get iconSize16 => screenHeight / 42.71428571428571;
-  static double get iconSize20 => screenHeight / 34.17142857142857;
-  static double get iconSize24 => screenHeight / 28.47619047619048;
+  // === LIST VIEW SIZE ===
+  // (411.4 / 3.42 = 120), (411.4 / 4.11 = 100)
+  static double get listViewImgSize => 120.w;
+  static double get listViewTextContSize => 100.w;
 
-  // list view size
-  static double get listViewImgSize => screenWidth / 3.428571428571428;
-  static double get listViewTextContSize => screenWidth / 4.114285714285714;
+  // === POPULAR FOOD ===
+  // (683.4 / 1.95 = 350)
+  static double get popularFoodImgSize => 350.h;
 
-  // popular food
-  static double get popularFoodImgSize => screenHeight / 1.95265306122449;
+  // === BOTTOM BAR ===
+  // (683.4 / 5.69 = 120)
+  static double get bottomHeightBar => 120.h;
 
-  // bottom height
-  static double get bottomHeightBar => screenHeight / 5.695238095238095;
-
-  // login screen dimensions
-  static double get loginImg => screenHeight / 5.38;
-
-  // splash screen dimensions
-  static double get splashImg => screenHeight / 3.38;
+  // === SCREEN DIMENSIONS ===
+  // (683.4 / 5.38 = ~127)
+  static double get loginImg => 127.h;
+  // (683.4 / 3.38 = ~202)
+  static double get splashImg => 202.h;
 }
