@@ -8,6 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_foundation_getx/app/modules/news/controllers/news_controller.dart';
+import 'package:flutter_foundation_getx/app/widget/custom_snackbar.dart';
 import 'package:get/get.dart';
 
 import '../../../../../core/util/app_config.dart';
@@ -78,7 +79,13 @@ class NewsMobile extends StatelessWidget {
                       ),
                     ),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showCustomSnackBar(
+                          title: 'Test',
+                          message: 'Sort Product Button',
+                          isError: false
+                        );
+                      },
                       style: ButtonStyle(
                         shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
