@@ -1,3 +1,11 @@
+/*
+ * Created by Vinsensius Arko on 24/03/2026, 04:44
+ * vinsensiusarka@gmail.com
+ * Last modified 03/02/2026, 23:33
+ * Copyright (c) 2026.
+ * All rights reserved.
+ */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_foundation_getx/app/widget/dialog/custom_alert_dialog.dart';
 

@@ -1,8 +1,8 @@
 /*
- * Created by Vinsensius Arko on 17/03/2025, 12:51
+ * Created by Vinsensius Arko on 24/03/2026, 04:44
  * vinsensiusarka@gmail.com
- * Last modified 25/12/2024, 20:54
- * Copyright (c) 2025.
+ * Last modified 19/03/2026, 16:07
+ * Copyright (c) 2026.
  * All rights reserved.
  */
 

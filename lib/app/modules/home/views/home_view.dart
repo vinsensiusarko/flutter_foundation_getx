@@ -1,3 +1,11 @@
+/*
+ * Created by Vinsensius Arko on 24/03/2026, 04:44
+ * vinsensiusarka@gmail.com
+ * Last modified 04/02/2026, 00:04
+ * Copyright (c) 2026.
+ * All rights reserved.
+ */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_foundation_getx/app/core/util/screen_layout_util.dart';
 import 'package:flutter_foundation_getx/app/modules/home/views/layouts/desktop/home_desktop.dart';

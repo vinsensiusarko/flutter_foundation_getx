@@ -1,3 +1,11 @@
+/*
+ * Created by Vinsensius Arko on 24/03/2026, 04:44
+ * vinsensiusarka@gmail.com
+ * Last modified 18/07/2025, 22:43
+ * Copyright (c) 2026.
+ * All rights reserved.
+ */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_foundation_getx/app/core/util/dimensions.dart';
 

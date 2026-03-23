@@ -1,3 +1,11 @@
+/*
+ * Created by Vinsensius Arko on 24/03/2026, 04:44
+ * vinsensiusarka@gmail.com
+ * Last modified 05/08/2025, 14:36
+ * Copyright (c) 2026.
+ * All rights reserved.
+ */
+
 import 'package:get/get.dart';
 
 import '../../../core/controller/theme_controller.dart';

@@ -1,3 +1,11 @@
+/*
+ * Created by Vinsensius Arko on 24/03/2026, 04:44
+ * vinsensiusarka@gmail.com
+ * Last modified 22/03/2026, 13:49
+ * Copyright (c) 2026.
+ * All rights reserved.
+ */
+
 part of 'app_pages.dart';
 // DO NOT EDIT. This is code generated via package:get_cli/get_cli.dart
 // ignore_for_file: constant_identifier_names

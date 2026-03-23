@@ -1,3 +1,11 @@
+/*
+ * Created by Vinsensius Arko on 24/03/2026, 04:44
+ * vinsensiusarka@gmail.com
+ * Last modified 20/07/2025, 22:51
+ * Copyright (c) 2026.
+ * All rights reserved.
+ */
+
 import 'package:flutter_foundation_getx/app/data/repository/auth/auth_repository.dart';
 import 'package:get/get.dart';
 
